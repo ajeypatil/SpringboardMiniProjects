@@ -1,0 +1,31 @@
+Yammer Investigating a Drop in User Engagement
+
+1. Daily Signups and Events - 
+
+a. SQL Query for Number of events per day
+      
+select count(*) as total, date(occurred_at) as created 
+from tutorial.yammer_events 
+group by date(occurred_at)
+order by date(occurred_at)
+
+b. SQL Query for Number of events per day for ONLY in sign-up process
+
+select count(*) as total, date(occurred_at) as created 
+from tutorial.yammer_events 
+where event_name in ('create_user', 'enter_email', 
+                   'enter_info', 'complete_signup')
+group by date(occurred_at)
+order by date(occurred_at)
+
+c. SQL Query for Number of events per day for NOT in sign-up process
+
+select count(*) as total, date(occurred_at) as created 
+from tutorial.yammer_events 
+where event_name NOT in ('create_user', 'enter_email', 
+                   'enter_info', 'complete_signup')
+group by date(occurred_at)
+order by date(occurred_at)
+
+
+
